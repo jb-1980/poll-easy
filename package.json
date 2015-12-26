@@ -1,0 +1,27 @@
+{
+  "name": "poll-easy",
+  "version": "0.0.0",
+  "description": "An attempt to create the voting app from free code camp",
+  "main": "server.js",
+  "repository": "",
+  "author": "Joseph Gilgen <gilgenlabs@gmail.com>",
+  "dependencies" : {
+    "express" : "~4.0.0",           
+    "jade" : ">=1.11.0",               
+    "mongoose" : ">=4.3.1", 
+    "mongoose-slugs":"0.0.4",
+    "passport" : ">=0.3.2",         
+    "passport-local" : ">=1.0.0",    
+    "passport-facebook" : "~1.0.2", 
+    "passport-twitter" : "~1.0.2",  
+    "passport-google-oauth" : "~0.1.5",
+    "connect-flash" : "latest",     
+    "bcrypt-nodejs" : "latest",
+    "request":"latest",
+    "morgan": "~1.0.0",
+    "body-parser": "~1.0.0",
+    "cookie-parser": "~1.0.0",
+    "method-override": "~1.0.0",
+    "express-session": "~1.0.0"     
+  }
+}

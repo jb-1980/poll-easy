@@ -1,0 +1,33 @@
+extends index.jade
+
+block title
+  title Poll Easy | View Polls
+  
+block body_block
+  .jumbotron.col-md-8.col-md-offset-2.panel
+    h2.text-center Polls
+    if polls.length > 0
+      -
+        var responses=0;
+        var pollText = polls.length === 1 ? {'be':'is','polls':'poll'} : {'be':'are','polls':'polls'};
+        for(var i=0;i<polls.length;i++){
+          if(polls[i].responses){
+            console.log(JSON.stringify(polls[i]));
+            responses+=polls[i].responses.length;
+          }
+        }
+        var respText = responses === 1 ? 'response':'responses';
+      p.text-center
+        | There #{pollText.be} currently #{polls.length} #{pollText.polls}
+        | with #{responses} #{respText}. Choose one to see the details.
+      #polls
+        ul.nav.nav-list.text-center
+          for poll in polls
+            li.withripple
+              a.btn.btn-primary(href="/viewpoll/"+poll.owner.local.username+'/'+poll.question_slug) #{poll.question}
+    else
+      p.text-center
+        | There are no polls to show.
+        a(href="/mypolls/createpoll") Why not make one?
+block script_block
+    script(src="/public/js/ajax.js")

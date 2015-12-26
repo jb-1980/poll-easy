@@ -1,0 +1,44 @@
+extends ./index.jade
+    
+block title 
+  title Poll Easy | Signup
+block body_block
+  .jumbotron.container
+      h2.text-center Register with Poll Easy
+      br
+      .container
+          // LOGIN FORM
+          form#user_form.form-signin.col-md-8(method='post', action='/signup')
+            .form-group.label-floating.is-empty
+              label.control-label(for='id_firstname') First name
+              input#id_firstname.form-control(maxlength='30', name='firstname', type='text')
+              span.help-block Please enter your first name
+              span.material-input
+              span.material-input
+            .form-group.label-floating.is-empty
+              label.control-label(for='id_lastname') Last name
+              input#id_lastname.form-control(maxlength='30', name='lastname', type='text')
+              span.help-block Please enter your last name
+              span.material-input
+              span.material-input
+            .form-group.label-floating.is-empty
+              label.control-label(for='id_username') Username
+              input#id_username.form-control(maxlength='30', name='username', type='text')
+              span.help-block Please enter your username
+              span.material-input
+              span.material-input
+            .form-group.label-floating
+              label.control-label(for='id_password') Password
+              input#id_password.form-control(maxlength='128', name='password', type='password')
+              span.help-block Please enter a password
+              span.material-input
+              span.material-input
+            button.btn.btn-raised.btn-primary.btn-lg(type='submit') Signup
+        hr
+      div
+          p
+            | Already have an account? 
+            a(href='/login') Login
+          p
+            | Or go 
+            a(href='/') home

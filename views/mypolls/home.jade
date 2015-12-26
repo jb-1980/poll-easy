@@ -1,0 +1,44 @@
+extends ../index.jade
+    
+block title 
+  title Poll Easy | My Polls
+block body_block
+  .jumbotron.col-md-8.col-md-offset-2
+    h2.text-center My Polls
+    if polls
+      -
+        var responses=0;
+        var pollText = polls.length === 1 ? 'poll' : 'polls';
+        for(var i=0;i<polls.length;i++){
+          if(polls[i].responses){
+            responses+=polls[i].responses.length;
+          }
+        }
+        var respText = responses === 1 ? 'response':'responses';
+      p.text-center
+        | You currently have #{polls.length} #{pollText}
+        | with #{responses} #{respText}. Choose one to see the details.
+    else
+      p.text-center You currently have 0 polls. Why not make one?
+    #polls.col-md-6.col-md-offset-3
+      ul.nav.nav-list
+        li.withripple.text-center
+            a(href="/mypolls/createpoll")
+              i.material-icons add
+              | Add Poll
+        if polls    
+          for poll in polls
+            li.withripple(data-poll-id=poll.id)
+              span.btn.btn-primary.btn-fab.btn-fab-mini.delete-poll
+                i.material-icons clear
+              a.btn.btn-primary(href="/viewpoll/"+user.local.username_slug+'/'+poll.question_slug,
+                style="display:inline-block") 
+                |#{poll.question}
+              
+        else
+          li 
+            | It looks like you don't have any polls. Why not make one?
+  .col-sm-8.col-sm-offset-4.col-md-9.col-md-offset-3.main
+    block main_block
+block script_block
+    script(src="/public/js/ajax.js")

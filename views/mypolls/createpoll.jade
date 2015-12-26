@@ -1,0 +1,55 @@
+extends home.jade
+
+block title
+  title Poll Easy | Create Poll
+  
+block body_block
+  .row
+    .col-md-4.col-md-offset-4
+      .panel.panel-primary
+        .panel-heading
+          h3.text-center New Poll
+        .panel-body
+            if message
+              #{message}
+            form#poll_form.form-signin.col-md-12(method='post', action='/mypolls/createpoll')
+              h3.text-center What is your question?
+              .form-group.label-floating.is-empty
+                input#id_poll_question.form-control(name='question', type='text',placeholder="Do you like cats or dogs?")
+                span.help-block This will be your poll's name.
+                span.material-input
+              
+              h3.text-center Options
+              #options
+                .form-group.label-floating.is-empty
+                  .input-group
+                    input.form-control(maxlength='30', name='options[]', type='text',placeholder="cats")
+                    span.input-group-btn
+                      span.btn.btn-primary.btn-fab.btn-fab-mini.delete-option
+                        i.material-icons clear
+                  span.material-input
+                .form-group.label-floating.is-empty
+                  .input-group
+                    input.form-control(maxlength='30', name='options[]', type='text',placeholder="dogs")
+                    span.input-group-btn
+                      span.btn.btn-primary.btn-fab.btn-fab-mini.delete-option
+                        i.material-icons clear
+                  span.material-input
+              span.btn.btn-primary#add-option
+                i.material-icons add
+                | Add option
+              br
+              .checkbox
+                label
+                  input(type="checkbox",name="hidden")
+                  | &nbsp; Make private 
+                  i.material-icons.text-primary(data-toggle="tooltip",title="This will hide the poll from the view polls list, but will still be accessible to anyone with the url.")
+                    |help
+              br
+              button.btn.btn-raised.btn-primary.btn-lg(type='submit') submit
+              a.btn.btn-raised.btn-primary.btn-lg(href="/mypolls") cancel
+block script_block
+  script.
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });

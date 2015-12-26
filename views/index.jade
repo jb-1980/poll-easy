@@ -1,0 +1,101 @@
+doctype html
+html
+  head
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(href="https://fonts.googleapis.com/icon?family=Material+Icons",rel="stylesheet")
+    //Bootstrap
+    link(rel="stylesheet",href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css")
+    link(rel="stylesheet",href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css")
+    //Include roboto.css to use the Roboto web font, material.css to include the theme and ripples.css to style the ripple effect
+    link(href="/public/css/roboto.min.css", rel="stylesheet")
+    link(href="/public/css/bootstrap-material-design.css", rel="stylesheet")
+    link(href="/public/css/ripples.min.css", rel="stylesheet")
+    link(href="/public/css/sortable-theme-bootstrap.css", rel="stylesheet")
+    link(href="/public/css/main.css", rel="stylesheet")
+    block title
+      title Poll Easy | Home
+    
+  body
+    .bs-component
+      .navbar.navbar-default.navbar-fixed-top
+        .container-fluid
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-responsive-collapse')
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            a.navbar-brand(href='/') Poll Easy
+          .navbar-collapse.collapse.navbar-responsive-collapse
+            ul.nav.navbar-nav
+              li
+                a(href='/viewpolls') View Polls
+            ul.nav.navbar-nav.navbar-right
+              if user
+                li
+                  a(href='/mypolls') My Polls
+                li.dropdown
+                  a.dropdown-toggle(href='bootstrap-elements.html', data-target='#', data-toggle='dropdown')
+                    | #{user.local.firstname} #{user.local.lastname}
+                    b.caret
+                  ul.dropdown-menu
+                    li
+                      a(href='/profile') Profile
+                    li.divider
+                    li
+                      a(href='/logout') Logout
+              else
+                li
+                  a(href='/signup') Sign up
+                li
+                  a(href='/login') Login
+    .container-fluid
+      .row
+        block body_block
+          .jumbotron
+            .container.text-center
+              h2 Poll Easy
+              h4 Where it is so easy to make polls!
+              p Create custom polls with live results
+              if user
+                a.btn.btn-primary.btn-raised(href="mypolls") See my polls
+              else
+                a.btn.btn-primary.btn-raised(href="/signup") Sign Up!
+          .container
+            .row
+              .col-lg-4
+                h2.text-center
+                  i.material-icons(style="font-size:3em;") sync
+                h3.text-center Instant results
+                p.text-center(style="font-size:1.2em;")
+                  | Quickly get results for all your polls, with a beautiful graphical
+                  | representation that makes it easy to understand the data.
+              .col-lg-4
+                h2.text-center
+                  i.material-icons(style="font-size:3em;color:green;") important_devices
+                h3.text-center Works on all your devices
+                p.text-center(style="font-size:1.2em;")
+                  | We know that most of your polls will be accessed via tablets,
+                  | smart phones, netbooks and notebooks that your visitors are
+                  | using. We have designed them to be responsive to all these devices.
+              .col-lg-4
+                h2.text-center
+                  i.material-icons(style="font-size:3em;color:green;") create
+                h3.text-center Create and deploy with ease
+                p.text-center(style="font-size:1.2em;")
+                  | Poll creation is dead simple. You just need to create your question,
+                  | list some options, and then you are ready to launch and track
+                  | the results.
+      // /row
+    // /.container-fluid
+    hr
+    footer
+      p(style='text-align:center;') © Poll Easy - Gilgen Labs 2015
+    script(src="/public/js/jquery-2.1.4.min.js")
+    script(src="/public/js/bootstrap.min.js")
+    script(src="/public/js/material.js")
+    script(src="/public/js/ripples.min.js")
+    script(src="/public/js/sortable.min.js")
+    script(src="/public/js/ajax.js")
+    block script_block
+    script.
+      $.material.init();

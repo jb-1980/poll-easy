@@ -1,0 +1,43 @@
+extends index.jade
+
+block title
+  title Poll Easy | View Poll
+  
+block body_block
+  .col-md-4.col-md-offset-4.panel.text-center(style="padding-top:20px;")
+    if poll.responses.length > 0
+      h2(style="border-bottom:thin solid;") #{poll.question}
+      canvas#chart-canvas
+      h4.text-center
+        a(href="/addresponse/"+poll.id)
+          i.material-icons add
+          | add response  
+    else
+        h2.text-center(style="border-bottom:thin solid;") #{poll.question}
+        h3.text-center There are no responses yet.
+        br
+        h3
+          a(href="/addresponse/"+poll.id) Why not add one?
+    h4.text-center
+      |Share this poll at:
+      br
+      a #{url}
+block script_block
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js")
+  script.
+    var data = {
+        labels:!{JSON.stringify(poll.options)},
+        datasets: [
+            {
+                label: '#{poll.question}',
+                fillColor: "rgba(151,187,205,0.5)",
+                strokeColor: "rgba(151,187,205,0.8)",
+                highlightFill: "rgba(151,187,205,0.75)",
+                highlightStroke: "rgba(151,187,205,1)",
+                data: !{JSON.stringify(data)}
+            }
+        ]
+    };
+
+    var ctx = document.getElementById("chart-canvas").getContext("2d");
+    var myNewChart = new Chart(ctx).Bar(data);
